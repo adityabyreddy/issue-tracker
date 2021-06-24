@@ -22,4 +22,6 @@ jobs:
       run: go fmt .
 
     - name: Test
-      run: go test -v ./...
+      run:
+        export GIN_MODE=release
+        go test -v ./...
