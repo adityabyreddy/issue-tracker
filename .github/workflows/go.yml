@@ -8,8 +8,18 @@ on:
 
 jobs:
 
-  Test:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - run: export GIN_MODE=release
-    - run: go test -v ./...
+    - uses: actions/checkout@v2
+
+    - name: Set up Go
+      uses: actions/setup-go@v2
+      with:
+        go-version: 1.15
+    
+    - name: Fmt
+      run: go fmt .
+
+    - name: Test
+      run: export GIN_MODE=release && go test -v ./...
